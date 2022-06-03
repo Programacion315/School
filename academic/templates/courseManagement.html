@@ -4,7 +4,7 @@
 
 {% block body %}
 <!--Jinja 2 || template engine || to process data-->
-<h1>We are already on the course management page!</h1>
+
 
 <ul>
     <div class="row">
@@ -12,7 +12,7 @@
             <h2>Gestion de cursos</h2>
             <div class="card">
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="/registerCourse/" method="POST">{% csrf_token %}
                         <div class="from-group">
                             <input type="text" id="txtId" name="txtId" class="form-control" placeholder="id" minlength="1" maxlength="6" required>                            
                         </div>
@@ -23,7 +23,7 @@
                             <input type="text" id="txtCredits" name="txtCredits" class="form-control" min="1" max="9" required placeholder="credits">                            
                         </div>
                         <div class="from-group">
-                            <button type="submit" class="btn btn-success btn-block text-white">Save</button>                        
+                            <button type="submit" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500">Save</button>                        
                         </div>
                     </form>
                 </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"> 
-            <h1>List of courses</h1>
+            <h1 >List of courses</h1>
             <div class="table-responsive py-2">
                 <table class="table table-striped">
                     <thead>
@@ -39,6 +39,7 @@
                             <th>Id:</th>
                             <th>Name:</th>
                             <th>Credits:</th>
+                            <th colspan="">Options</th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +48,7 @@
                             <td>{{c.id}}</td>   
                             <td>{{c.name}}</td>               
                             <td>{{c.credits}}</td>
+                            
                         </tr>
                         {% endfor%}
                     </tbody>
