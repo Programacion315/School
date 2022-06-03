@@ -1,0 +1,2 @@
+# School management system
+Program that allows you to create subjects for a school, in addition to this I allow you to create teachers and assign them a subject. And not only that, rooms can be created, which will be assigned a subject, a teacher, and a corresponding hour. Students and everything necessary for the administration of a school can be added, all this in Django, using the Bootstrap framework.
