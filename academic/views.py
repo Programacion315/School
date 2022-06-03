@@ -13,6 +13,15 @@ def registerCourse(request):
     id = request.POST['txtId']
     name = request.POST['txtName']
     credits = request.POST['txtCredits']
-
     grade = Grade.objects.create(id=id, name=name, credits=credits) 
+    return redirect('/') 
+
+def deleteCourse(request,id):
+    grade = Grade.objects.get(id=id)
+    grade.delete()
     return redirect('/')
+
+def editCourse(request, id):
+    grade = Grade.objects.get(id=id)
+    return render(request, "editCourse.html", {"grade":grade})
+

@@ -5,50 +5,64 @@
 {% block body %}
 <!--Jinja 2 || template engine || to process data-->
 
+<h1 class="transition mb-10 text-center cursor-default text-3xl mt-6 font-mono font-normal  hover:font-bold hover:text-blue-600 hover:scale-110">Add student</h1>
 
-<ul>
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> 
-            <h2>Gestion de cursos</h2>
+    <div class="flex space-x-7 px-10">
+        <div class="w-3/12"> 
+            <h2 class="text-center mb-5">Course management</h2>
             <div class="card">
                 <div class="card-body">
-                    <form action="/registerCourse/" method="POST">{% csrf_token %}
+                    <form action="/registerCourse/" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">{% csrf_token %}
                         <div class="from-group">
-                            <input type="text" id="txtId" name="txtId" class="form-control" placeholder="id" minlength="1" maxlength="6" required>                            
+                            <input type="text" id="txtId" name="txtId" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="id" minlength="1" maxlength="6" required>                            
                         </div>
                         <div class="from-group">
-                            <input type="text" id="txtName" name="txtName" class="form-control" placeholder="name"  maxlength="50" required>                            
+                            <input type="text" id="txtName" name="txtName" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="name"  maxlength="50" required>                            
                         </div>
                         <div class="from-group">
-                            <input type="text" id="txtCredits" name="txtCredits" class="form-control" min="1" max="9" required placeholder="credits">                            
+                            <input type="text" id="txtCredits" name="txtCredits" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" min="1" max="9" required placeholder="credits">                            
                         </div>
                         <div class="from-group">
-                            <button type="submit" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500">Save</button>                        
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save</button>                        
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"> 
-            <h1 >List of courses</h1>
-            <div class="table-responsive py-2">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id:</th>
-                            <th>Name:</th>
-                            <th>Credits:</th>
-                            <th colspan="">Options</th> 
+        <div class="flex-auto"> 
+            <h1 class="text-center mb-5">List of courses</h1>
+            <div class="table-responsive">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Id:</th>
+                            <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Name:</th>
+                            <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Credits:</th>
+                            <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Options</th> 
                         </tr>
                     </thead>
                     <tbody>
                         {% for c in grades %}
-                        <tr>
-                            <td>{{c.id}}</td>   
-                            <td>{{c.name}}</td>               
-                            <td>{{c.credits}}</td>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4">{{c.id}}</td>   
+                            <td class="px-6 py-4">{{c.name}}</td>               
+                            <td class="px-6 py-4">{{c.credits}}</td>
+                            <td class="px-6 py-4">
+                                
+                                <div class="flex flex-row">
+                                <a href="editCourse/{{c.id}}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hover:text-blue-700 hover:scale-125" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                              </svg></a>
+
+                              <a href="deleteCourse/{{c.id}}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hover:text-red-700 hover:scale-125" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                              </svg></a>
+                                </div>
+                            </td>
                             
+                            
+                                          
                         </tr>
                         {% endfor%}
                     </tbody>
@@ -56,5 +70,5 @@
             </div>
         </div>
     </div>
-</ul>
+
 {% endblock %}
